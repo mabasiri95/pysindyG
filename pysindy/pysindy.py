@@ -585,7 +585,7 @@ class SINDy(BaseEstimator):
             If True, x contains multiple trajectories and must be a list of
             data from each trajectory. If False, x is a single trajectory.
 
-        metric: callable, optional
+        metric: callable, optional  Such as: r2_score or mean_squared_error
             Metric function with which to score the prediction. Default is the
             R^2 coefficient of determination.
             See `Scikit-learn \
