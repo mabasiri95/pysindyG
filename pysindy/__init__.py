@@ -53,6 +53,7 @@ from .optimizers import SINDyOptimizer
 from .optimizers import SR3
 from .optimizers import SSR
 from .optimizers import STLSQ
+from .optimizers import STLSQG
 from .optimizers import EnsembleOptimizer
 
 
