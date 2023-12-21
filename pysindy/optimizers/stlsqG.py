@@ -121,6 +121,8 @@ class STLSQ(BaseOptimizer):
             raise ValueError("threshold cannot be negative")
         if alpha < 0:
             raise ValueError("alpha cannot be negative")
+            
+        print("***********************************MABASIRI SINDY***********************")
 
         self.threshold = threshold
         self.alpha = alpha
