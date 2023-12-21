@@ -145,6 +145,17 @@ class STLSQG(BaseOptimizer):
         with warnings.catch_warnings():
             warnings.filterwarnings("ignore", category=LinAlgWarning)
             try:
+                """
+                Minimize Objective function ||y - Xw||^2  +  a||w||^2
+                OneNote 10/26/2023
+                each state variable is calculated seperately
+                w is the coefficients, a vector with length = number of terms (J)
+                w here is a column of matrix ksi in OneNote
+                y is X_dot, a vector with length = number of samples (n)
+                x is Theta(X), a matrix with dimension (n,J) and reduced to (n,J/.)
+                every iteration the length of terms is reduced
+                
+                """
                 coef = ridge_regression(x, y, self.alpha, **kw) #TODO: modify this
                 print('Coef ridge regression: \n', coef)
                 print('x ridge regression shape: \n', x.shape)
@@ -210,7 +221,7 @@ class STLSQG(BaseOptimizer):
                         "coefficients".format(self.threshold)
                     )
                     continue
-                coef_i = self._regress(x[:, ind[i]], y[:, i])
+                coef_i = self._regress(x[:, ind[i]], y[:, i]) #TODO: modify this part as well, adjacency matrix should be inputed
                 coef_i, ind_i = self._sparse_coefficients(
                     n_features, ind[i], coef_i, self.threshold
                 )
