@@ -122,7 +122,7 @@ class STLSQG(BaseOptimizer):
         if alpha < 0:
             raise ValueError("alpha cannot be negative")
             
-        print("***********************************MABASIRI SINDY***********************")
+        print("*********************************MABASIRI SINDY***********************")
 
         self.threshold = threshold
         self.alpha = alpha
@@ -146,6 +146,7 @@ class STLSQG(BaseOptimizer):
             warnings.filterwarnings("ignore", category=LinAlgWarning)
             try:
                 coef = ridge_regression(x, y, self.alpha, **kw)
+                print('Coef ridge regression: %f' %coef)
             except LinAlgWarning:
                 # increase alpha until warning stops
                 self.alpha = 2 * self.alpha
