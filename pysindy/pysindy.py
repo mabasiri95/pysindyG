@@ -27,6 +27,7 @@ try:  # Waiting on PEP 690 to lazy import CVXPY
 except ImportError:
     sindy_pi_flag = False
 from .optimizers import STLSQ
+from .optimizers import STLSQG
 from .utils import AxesArray
 from .utils import comprehend_axes
 from .utils import concat_sample_axis

@@ -11,7 +11,7 @@ from sklearn.utils.validation import check_is_fitted
 from .base import BaseOptimizer
 
 
-class STLSQ(BaseOptimizer):
+class STLSQG(BaseOptimizer):
     """Sequentially thresholded least squares algorithm.
     Defaults to doing Sequentially thresholded Ridge regression.
 
@@ -110,7 +110,7 @@ class STLSQ(BaseOptimizer):
         initial_guess=None,
         verbose=False,
     ):
-        super(STLSQ, self).__init__(
+        super(STLSQG, self).__init__(
             max_iter=max_iter,
             fit_intercept=fit_intercept,
             copy_X=copy_X,
@@ -229,7 +229,7 @@ class STLSQ(BaseOptimizer):
                 break
         else:
             warnings.warn(
-                "STLSQ._reduce did not converge after {} iterations.".format(
+                "STLSQG._reduce did not converge after {} iterations.".format(
                     self.max_iter
                 ),
                 ConvergenceWarning,
@@ -239,7 +239,7 @@ class STLSQ(BaseOptimizer):
             except NameError:
                 coef = self.coef_
                 warnings.warn(
-                    "STLSQ._reduce has no iterations left to determine coef",
+                    "STLSQG._reduce has no iterations left to determine coef",
                     ConvergenceWarning,
                 )
         self.coef_ = coef
