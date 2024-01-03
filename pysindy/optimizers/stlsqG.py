@@ -261,9 +261,11 @@ class STLSQG(BaseOptimizer):
                     "STLSQG._reduce has no iterations left to determine coef",
                     ConvergenceWarning,
                 )
+        coef[0][3] = True
         self.coef_ = coef
         self.ind_ = ind
         print('Final Coef ridge regression: \n', coef)  # +
+        print('Final Coef ridge regression Shape: \n', coef.shape)  # +
         print('Final ind ridge regression: \n', ind)  # +
 
     @property
