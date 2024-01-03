@@ -102,7 +102,7 @@ class STLSQG(BaseOptimizer):
         self,
         threshold=0.1,
         alpha=0.05,
-        max_iter=0, # originally 20
+        max_iter=1, # originally 20
         ridge_kw=None,
         normalize_columns=False,
         fit_intercept=False,
