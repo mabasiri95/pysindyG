@@ -165,7 +165,7 @@ class STLSQG(BaseOptimizer):
                 every iteration the length of terms is reduced
                 
                 """
-                coef = ridge_regression(x, y, self.alpha, **kw) #TODO: modify this
+                coef = ridge_regression(x, y, self.alpha, **kw) #TODO: modify this 
                 #coef = minimize(custom_ridge_obj, x0=np.zeros(x.shape[1]), args=(x, y, self.alpha)).x # +
 
                 print('Coef ridge regression: \n', coef)  # +
