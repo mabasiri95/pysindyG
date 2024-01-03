@@ -239,6 +239,7 @@ class STLSQG(BaseOptimizer):
                 L2 = self.alpha * np.sum(coef**2)
                 L0 = np.count_nonzero(coef)
                 row = [k, R2, L2, L0, R2 + L2]
+                print('PLACE HOLDER \n')
                 print(
                     "{0:10d} ... {1:10.4e} ... {2:10.4e} ... {3:10d}"
                     " ... {4:10.4e}".format(*row)
