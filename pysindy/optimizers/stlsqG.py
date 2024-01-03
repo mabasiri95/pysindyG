@@ -7,6 +7,15 @@ from scipy.linalg import LinAlgWarning
 from sklearn.exceptions import ConvergenceWarning
 from sklearn.linear_model import ridge_regression
 from sklearn.utils.validation import check_is_fitted
+import numpy as np
+from scipy.optimize import minimize
+
+def custom_ridge_obj(w, x, y, alpha):
+    # Modify the standard Ridge objective here
+    # Example: Add a custom penalty term
+    loss = np.sum((y - x @ w)**2) + alpha * np.sum(w**2) #+ beta * np.sum(np.abs(w))  # Additional penalty
+    return loss
+
 
 from .base import BaseOptimizer
 
@@ -156,7 +165,9 @@ class STLSQG(BaseOptimizer):
                 every iteration the length of terms is reduced
                 
                 """
-                coef = ridge_regression(x, y, self.alpha, **kw) #TODO: modify this
+                #coef = ridge_regression(x, y, self.alpha, **kw) #TODO: modify this
+                coef = minimize(custom_ridge_obj, x0=np.zeros(x.shape[1]), args=(x, y, self.alpha)).x # +
+
                 print('Coef ridge regression: \n', coef)  # +
                 print('x ridge regression shape: \n', x.shape) # +
                 print('y ridge regression shape: \n', y.shape) # +
