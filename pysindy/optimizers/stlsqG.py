@@ -261,7 +261,7 @@ class STLSQG(BaseOptimizer):
                     "STLSQG._reduce has no iterations left to determine coef",
                     ConvergenceWarning,
                 )
-        coef = np.zeros((n_targets, n_features))
+        coef = np.ones((n_targets, n_features))
         self.coef_ = coef
         self.ind_ = ind # only this is importent to know which terms are contributing
         print('Final Coef ridge regression: \n', coef)  # +
