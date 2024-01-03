@@ -157,16 +157,16 @@ class STLSQG(BaseOptimizer):
                 
                 """
                 coef = ridge_regression(x, y, self.alpha, **kw) #TODO: modify this
-                print('Coef ridge regression: \n', coef)
-                print('x ridge regression shape: \n', x.shape)
-                print('y ridge regression shape: \n', y.shape)
+                print('Coef ridge regression: \n', coef)  # +
+                print('x ridge regression shape: \n', x.shape) # +
+                print('y ridge regression shape: \n', y.shape) # +
             except LinAlgWarning:
                 # increase alpha until warning stops
                 self.alpha = 2 * self.alpha
         self.iters += 1
         return coef
 
-    def _no_change(self):
+    def _no_change(self): #Checks if the coefficient mask has changed after thresholding to determine convergence
         """Check if the coefficient mask has changed after thresholding"""
         this_coef = self.history_[-1].flatten()
         if len(self.history_) > 1:
@@ -175,7 +175,9 @@ class STLSQG(BaseOptimizer):
             last_coef = np.zeros_like(this_coef)
         return all(bool(i) == bool(j) for i, j in zip(this_coef, last_coef))
 
-    def _reduce(self, x, y):
+    def _reduce(self, x, y): #Main iterative loop of the STLSQG algorithm.
+                            #Performs ridge regression, thresholding, and coefficient updates.
+                            #Iterates until convergence or maximum iterations are reached.
         """Performs at most ``self.max_iter`` iterations of the
         sequentially-thresholded least squares algorithm.
 
@@ -225,7 +227,10 @@ class STLSQG(BaseOptimizer):
                 coef_i, ind_i = self._sparse_coefficients(
                     n_features, ind[i], coef_i, self.threshold
                 )
-                coef[i] = coef_i
+                
+                print('AFTER SPARSE Coef ridge regression: \n', coef_i)  # +
+                print('Before SPARSE Coef ridge regression: \n', coef[i])  # +
+                coef[i] = coef_i # check this
                 ind[i] = ind_i
 
             self.history_.append(coef)
