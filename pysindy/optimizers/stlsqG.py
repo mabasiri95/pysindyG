@@ -14,7 +14,7 @@ def custom_ridge_obj(w, x, y, alpha):
     # Modify the standard Ridge objective here
     # Example: Add a custom penalty term
     F = np.zeros(w.shape[0])
-    #F[0]= 10000
+    F[0]= 10000
     loss = np.sum((y - x @ w)**2) + alpha * np.sum(w**2) + alpha * np.sum((F*w)**2)#+ beta * np.sum(np.abs(w))  # Additional penalty
     return loss
 
