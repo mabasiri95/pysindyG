@@ -246,7 +246,6 @@ class STLSQG(BaseOptimizer):
                 )
                 
                 print('AFTER SPARSE Coef ridge regression: \n', coef_i)  # +
-                print('Before SPARSE Coef ridge regression: \n', coef[i])  # +
                 coef[i] = coef_i # check this
                 ind[i] = ind_i
 
