@@ -151,7 +151,7 @@ class STLSQG(BaseOptimizer):
         c[~big_ind] = 0
         return c, big_ind
 
-    def _regress(self, x, y):
+    def _regress(self, x, y, FA):
         """Perform the ridge regression"""
         kw = self.ridge_kw or {}
 
@@ -169,8 +169,6 @@ class STLSQG(BaseOptimizer):
                 every iteration the length of terms is reduced
                 
                 """
-                FA = np.zeros(x.shape[1])
-                FA[0]= 10000
                 #coef = ridge_regression(x, y, self.alpha, **kw) #TODO: modify this 
                 coef = minimize(custom_ridge_obj, x0=np.zeros(x.shape[1]), args=(x, y, self.alpha, FA, 0.8)).x # + # below zero for simple ridge, more than zero for cutom ridge
 
@@ -233,6 +231,8 @@ class STLSQG(BaseOptimizer):
                 break
 
             coef = np.zeros((n_targets, n_features))
+            FA = np.zeros((n_targets, n_features))
+            FA[0,0]= 10000
             for i in range(n_targets):
                 if np.count_nonzero(ind[i]) == 0:
                     warnings.warn(
@@ -240,7 +240,7 @@ class STLSQG(BaseOptimizer):
                         "coefficients".format(self.threshold)
                     )
                     continue
-                coef_i = self._regress(x[:, ind[i]], y[:, i]) #TODO: modify this part as well, adjacency matrix should be inputed
+                coef_i = self._regress(x[:, ind[i]], y[:, i], FA[i,ind[i]]) #TODO: modify this part as well, adjacency matrix should be inputed
                 coef_i, ind_i = self._sparse_coefficients(
                     n_features, ind[i], coef_i, self.threshold
                 )
