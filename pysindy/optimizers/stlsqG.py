@@ -116,7 +116,7 @@ class STLSQG(BaseOptimizer):
         threshold=0.1,
         alpha=0.05,
         beta = 0.1, # for penalizing using F which comes from the graph
-        max_iter=1, # originally 20
+        max_iter=20, # originally 20
         ridge_kw=None,
         normalize_columns=False,
         fit_intercept=False,
@@ -216,7 +216,6 @@ class STLSQG(BaseOptimizer):
         #handling the case that there are no F for penalizing
         if self.F_penalize is not None:
             FA = self.F_penalize
-            print("WE HAVE PENALIIIIIZZEEEE")
         else:
             FA = np.zeros((n_targets, n_features))
 
