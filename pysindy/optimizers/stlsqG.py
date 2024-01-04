@@ -10,11 +10,9 @@ from sklearn.utils.validation import check_is_fitted
 import numpy as np
 from scipy.optimize import minimize
 
-def custom_ridge_obj(w, x, y, alpha, beta = 0.1):
+def custom_ridge_obj(w, x, y, alpha, beta = 0.1, F):
     # Modify the standard Ridge objective here
     # Example: Add a custom penalty term
-    F = np.zeros(w.shape[0])
-    F[0]= 10000
     loss = np.sum((y - x @ w)**2) + alpha * np.sum(w**2) #+ beta * np.sum(np.abs(w))  # Additional penalty
     if beta > 0:
        loss += beta * np.sum((F*w)**2)
@@ -171,8 +169,10 @@ class STLSQG(BaseOptimizer):
                 every iteration the length of terms is reduced
                 
                 """
+                FA = np.zeros(w.shape[0])
+                FA[0]= 10000
                 #coef = ridge_regression(x, y, self.alpha, **kw) #TODO: modify this 
-                coef = minimize(custom_ridge_obj, x0=np.zeros(x.shape[1]), args=(x, y, self.alpha, 0.0)).x # + # below zero for simple ridge, more than zero for cutom ridge
+                coef = minimize(custom_ridge_obj, x0=np.zeros(x.shape[1]), args=(x, y, self.alpha, 0.8, FA)).x # + # below zero for simple ridge, more than zero for cutom ridge
 
                 print('Coef ridge regression: \n', coef)  # +
                 print('x ridge regression shape: \n', x.shape) # +
