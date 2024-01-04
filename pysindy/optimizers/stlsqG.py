@@ -10,7 +10,7 @@ from sklearn.utils.validation import check_is_fitted
 import numpy as np
 from scipy.optimize import minimize
 
-def custom_ridge_obj(w, x, y, alpha, F, beta = 0.1):
+def custom_ridge_obj(w, x, y, alpha, F, beta):
     # Modify the standard Ridge objective here
     # Example: Add a custom penalty term
     loss = np.sum((y - x @ w)**2) + alpha * np.sum(w**2) #+ beta * np.sum(np.abs(w))  # Additional penalty
@@ -115,6 +115,7 @@ class STLSQG(BaseOptimizer):
         self,
         threshold=0.1,
         alpha=0.05,
+        beta = 0.1, # for penalizing using F which comes from the graph
         max_iter=1, # originally 20
         ridge_kw=None,
         normalize_columns=False,
@@ -141,6 +142,7 @@ class STLSQG(BaseOptimizer):
 
         self.threshold = threshold
         self.alpha = alpha
+        self.beta = beta
         self.ridge_kw = ridge_kw
         self.initial_guess = initial_guess
         self.verbose = verbose
@@ -173,7 +175,7 @@ class STLSQG(BaseOptimizer):
                 
                 """
                 #coef = ridge_regression(x, y, self.alpha, **kw) #TODO: modify this 
-                coef = minimize(custom_ridge_obj, x0=np.zeros(x.shape[1]), args=(x, y, self.alpha, FA, 0.8)).x # + # below zero for simple ridge, more than zero for cutom ridge
+                coef = minimize(custom_ridge_obj, x0=np.zeros(x.shape[1]), args=(x, y, self.alpha, FA, self.beta)).x # + # below zero for simple ridge, more than zero for cutom ridge
 
                 print('Coef ridge regression: \n', coef)  # +
                 print('x ridge regression shape: \n', x.shape) # +
