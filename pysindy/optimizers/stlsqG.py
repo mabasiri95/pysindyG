@@ -209,7 +209,14 @@ class STLSQG(BaseOptimizer):
         n_samples, n_features = x.shape
         n_targets = y.shape[1]
         n_features_selected = np.sum(ind)
-        FA = self.F_penalize
+        
+        
+        #handling the case that there are no F for penalizing
+        if self.F_penalize is not None:
+            FA = self.F_penalize
+        else:
+            FA = np.zeros((n_targets, n_features))
+
 
         # Print initial values for each term in the optimization
         if self.verbose:
