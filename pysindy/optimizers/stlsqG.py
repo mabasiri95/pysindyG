@@ -232,6 +232,8 @@ class STLSQG(BaseOptimizer):
 
             coef = np.zeros((n_targets, n_features))
             FA = np.zeros((n_targets, n_features))
+            index = [0,1,6,7,8,9,10,11,12,13,14,21,22,23,24,25,26,27,28,29,36,37,38,39,40,41,42,43,44,51,52]
+            FA[2:6,index] = 1
             #FA[0,0]= 10000
             for i in range(n_targets):
                 if np.count_nonzero(ind[i]) == 0:
