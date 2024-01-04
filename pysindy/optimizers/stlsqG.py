@@ -216,6 +216,7 @@ class STLSQG(BaseOptimizer):
         #handling the case that there are no F for penalizing
         if self.F_penalize is not None:
             FA = self.F_penalize
+            print("WE HAVE PENALIIIIIZZEEEE")
         else:
             FA = np.zeros((n_targets, n_features))
 
