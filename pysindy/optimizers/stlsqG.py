@@ -13,6 +13,7 @@ from scipy.optimize import minimize
 def custom_ridge_obj(w, x, y, alpha):
     # Modify the standard Ridge objective here
     # Example: Add a custom penalty term
+    print('Custom ridge w shape: \n', w.shape) # +
     loss = np.sum((y - x @ w)**2) + alpha * np.sum(w**2) #+ beta * np.sum(np.abs(w))  # Additional penalty
     return loss
 
