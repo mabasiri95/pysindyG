@@ -122,6 +122,8 @@ class STLSQG(BaseOptimizer):
         copy_X=True,
         initial_guess=None,
         verbose=False,
+        F_penalize = None
+        
     ):
         super(STLSQG, self).__init__(
             max_iter=max_iter,
@@ -142,6 +144,7 @@ class STLSQG(BaseOptimizer):
         self.ridge_kw = ridge_kw
         self.initial_guess = initial_guess
         self.verbose = verbose
+        self.F_penalize = F_penalize
 
     def _sparse_coefficients(self, dim, ind, coef, threshold):
         """Perform thresholding of the weight vector(s)"""
@@ -206,6 +209,7 @@ class STLSQG(BaseOptimizer):
         n_samples, n_features = x.shape
         n_targets = y.shape[1]
         n_features_selected = np.sum(ind)
+        FA = self.F_penalize
 
         # Print initial values for each term in the optimization
         if self.verbose:
@@ -231,9 +235,6 @@ class STLSQG(BaseOptimizer):
                 break
 
             coef = np.zeros((n_targets, n_features))
-            FA = np.zeros((n_targets, n_features))
-            index = [0,1,6,7,8,9,10,11,12,13,14,21,22,23,24,25,26,27,28,29,36,37,38,39,40,41,42,43,44,51,52]
-            FA[2:6,index] = 1
             #FA[0,0]= 10000
             for i in range(n_targets):
                 if np.count_nonzero(ind[i]) == 0:
