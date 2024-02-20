@@ -183,7 +183,7 @@ class STLSQG(BaseOptimizer):
                 """
                 #coef = ridge_regression(x, y, self.alpha, **kw) #TODO: modify this 
                 print("FA\n", FA)
-                coef = minimize(custom_ridge_obj, x0=np.zeros(x.shape[1]), args=(x, y, self.alpha, FA, self.beta)).x # + # below zero for simple ridge, more than zero for cutom ridge
+                coef = minimize(custom_ridge_obj2, x0=np.zeros(x.shape[1]), args=(x, y, self.alpha, FA, self.beta)).x # + # below zero for simple ridge, more than zero for cutom ridge
 
                 print('Coef ridge regression: \n', coef)  # +
                 print('F ridge regression: \n', FA)  # +
