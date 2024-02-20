@@ -15,10 +15,17 @@ def custom_ridge_obj(w, x, y, alpha, F, beta):
     # Example: Add a custom penalty term
     loss = np.sum((y - x @ w)**2) + alpha * np.sum(w**2) #+ beta * np.sum(np.abs(w))  # Additional penalty
     if beta > 0:
-       loss += beta * np.sum((F*w)**2)
-
-    
+       loss += beta * np.sum((F*w)**2)  
     return loss
+
+def custom_ridge_obj2(w, x, y, alpha, F, beta):
+    # Modify the standard Ridge objective here
+    # Example: Add a custom penalty term
+    loss = np.sum((y - x @ w)**2) #+ beta * np.sum(np.abs(w))  # Additional penalty
+    if beta > 0:
+       loss += ((alpha + beta)/2.0) * np.sum((F*w)**2)
+    return loss
+
 
 
 from .base import BaseOptimizer
@@ -175,6 +182,7 @@ class STLSQG(BaseOptimizer):
                 
                 """
                 #coef = ridge_regression(x, y, self.alpha, **kw) #TODO: modify this 
+                print("FA\n", FA)
                 coef = minimize(custom_ridge_obj, x0=np.zeros(x.shape[1]), args=(x, y, self.alpha, FA, self.beta)).x # + # below zero for simple ridge, more than zero for cutom ridge
 
                 print('Coef ridge regression: \n', coef)  # +
