@@ -14,6 +14,15 @@ def custom_ridge_obj(w, x, y, alpha, F, beta):
     # Modify the standard Ridge objective here
     # Example: Add a custom penalty term
     loss = np.sum((y - x @ w)**2) + alpha * np.sum(w**2) #+ beta * np.sum(np.abs(w))  # Additional penalty
+    temp1 = (F*w)
+    temp2 = (y - x @ w)
+    temp3 = (F*w)**2
+    temp4 = (y - x @ w)**2
+    
+    print("SHAPE FA*W", temp1.shape)
+    print("SHAPE y - x @ w", temp2.shape)
+    print("SHAPE (FA*W)^2", temp3.shape)
+    print("SHAPE (y - x @ w)^2", temp4.shape)
     if beta > 0:
        loss += beta * np.sum((F*w)**2)  
     return loss
