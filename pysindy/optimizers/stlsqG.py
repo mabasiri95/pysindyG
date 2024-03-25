@@ -25,7 +25,7 @@ def custom_ridge_obj2(w, x, y, alpha, F, beta):
     loss = np.sum((y - x @ w)**2) #+ beta * np.sum(np.abs(w))  # Additional penalty
     
     if np.max(F)==0:
-        loss = np.sum((y - x @ w)**2) + alpha * np.sum(w**2)
+        loss += alpha * np.sum(w**2)
     else:
         if beta > 0:
            loss += ((alpha + beta)/2.0) * np.sum((F*w)**2)
