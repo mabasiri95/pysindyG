@@ -421,11 +421,11 @@ class SINDy(BaseEstimator):
             warnings.filterwarnings(action, category=LinAlgWarning)
             warnings.filterwarnings(action, category=UserWarning)
             print("\nBefore running STLSQG:\n") #+
-            print('x Before running STLSQG shape: \n', len(x)) # +
-            print('x_dot Before running STLSQG shape: \n', len(x_dot)) # +
+            print('x Before running STLSQG shape: \n', len(x[0])) # +
+            print('x_dot Before running STLSQG shape: \n', len(x_dot[0])) # +
             self.model.fit(x, x_dot)
-            print('x After running STLSQG shape: \n', len(x)) # +
-            print('x_dot After running STLSQG shape: \n', len(x_dot)) # +
+            print('x After running STLSQG : \n', x) # +
+            print('x_dot After running STLSQG : \n', x_dot) # + 
             print("\nAfter running STLSQG:\n",self.feature_library.get_feature_names()) #+
 
 
