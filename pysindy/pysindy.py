@@ -414,16 +414,18 @@ class SINDy(BaseEstimator):
         ]
         x_dot = concat_sample_axis(x_dot)
         self.model = Pipeline(steps)
-        print("\nBefore running STLSQG:\n") #+
+        
         action = "ignore" if quiet else "default"
         with warnings.catch_warnings():
             warnings.filterwarnings(action, category=ConvergenceWarning)
             warnings.filterwarnings(action, category=LinAlgWarning)
             warnings.filterwarnings(action, category=UserWarning)
+            print("\nBefore running STLSQG:\n") #+
             self.model.fit(x, x_dot)
+            print("\nAfter running STLSQG:\n",self.feature_library.get_feature_names()) #+
 
 
-        print("\nAfter running STLSQG:\n",self.feature_library.get_feature_names()) #+
+        
 
         # New version of sklearn changes attribute name
         if float(__version__[:3]) >= 1.0:
