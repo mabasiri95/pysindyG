@@ -301,6 +301,7 @@ class SINDy(BaseEstimator):
         self: a fitted :class:`SINDy` instance
         """
         
+        print("\n\n\n***********fit is called************\n\n\n")
         
         if ensemble or library_ensemble:
             # DeprecationWarning are ignored by default...
