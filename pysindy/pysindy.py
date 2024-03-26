@@ -352,7 +352,7 @@ class SINDy(BaseEstimator):
         if u is not None:
             x = [np.concatenate((xi, ui), axis=xi.ax_coord) for xi, ui in zip(x, u)]
 
-        print("\nBefore running STLSQG:\n") #+
+
 
 
         if hasattr(self.optimizer, "unbias"):
@@ -404,6 +404,9 @@ class SINDy(BaseEstimator):
             self.coef_list = optimizer.optimizer.coef_list
         else:
             optimizer = SINDyOptimizer(self.optimizer, unbias=unbias)
+            
+        print("\nBefore running STLSQG:\n") #+
+        
         steps = [
             ("features", self.feature_library),
             ("shaping", SampleConcatter()),
