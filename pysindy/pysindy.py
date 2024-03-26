@@ -300,7 +300,7 @@ class SINDy(BaseEstimator):
         -------
         self: a fitted :class:`SINDy` instance
         """
-        print("\nBefore running STLSQG:\n") #+
+        
         
         if ensemble or library_ensemble:
             # DeprecationWarning are ignored by default...
@@ -351,6 +351,9 @@ class SINDy(BaseEstimator):
         # Append control variables
         if u is not None:
             x = [np.concatenate((xi, ui), axis=xi.ax_coord) for xi, ui in zip(x, u)]
+
+        print("\nBefore running STLSQG:\n") #+
+
 
         if hasattr(self.optimizer, "unbias"):
             unbias = self.optimizer.unbias
@@ -414,6 +417,9 @@ class SINDy(BaseEstimator):
             warnings.filterwarnings(action, category=LinAlgWarning)
             warnings.filterwarnings(action, category=UserWarning)
             self.model.fit(x, x_dot)
+
+
+        print("\nAfter running STLSQG:\n",self.feature_library.get_feature_names()) #+
 
         # New version of sklearn changes attribute name
         if float(__version__[:3]) >= 1.0:
