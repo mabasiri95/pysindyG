@@ -300,7 +300,8 @@ class SINDy(BaseEstimator):
         -------
         self: a fitted :class:`SINDy` instance
         """
-
+        print("\nBefore running STLSQG:\n",self.feature_library.get_feature_names()) #+
+        
         if ensemble or library_ensemble:
             # DeprecationWarning are ignored by default...
             warnings.warn(
@@ -430,6 +431,8 @@ class SINDy(BaseEstimator):
             for i in range(self.n_control_features_):
                 feature_names.append("u" + str(i))
             self.feature_names = feature_names
+            
+        print("\nAfter running STLSQG:\n",self.feature_library.get_feature_names()) #+
 
         return self
 
