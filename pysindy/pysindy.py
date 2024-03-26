@@ -438,7 +438,6 @@ class SINDy(BaseEstimator):
                 feature_names.append("u" + str(i))
             self.feature_names = feature_names
             
-        print("\nAfter running STLSQG:\n",self.feature_library.get_feature_names()) #+
 
         return self
 
