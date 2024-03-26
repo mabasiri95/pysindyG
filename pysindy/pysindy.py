@@ -420,7 +420,7 @@ class SINDy(BaseEstimator):
             warnings.filterwarnings(action, category=ConvergenceWarning)
             warnings.filterwarnings(action, category=LinAlgWarning)
             warnings.filterwarnings(action, category=UserWarning)
-            print("\nBefore running STLSQG:\n") #+
+            print("\nBefore running STLSQG:\n",self.feature_library.get_feature_names()) #+
             self.model.fit(x, x_dot)
             print("\nAfter running STLSQG:\n",self.feature_library.get_feature_names()) #+
 
