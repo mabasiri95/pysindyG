@@ -405,7 +405,7 @@ class SINDy(BaseEstimator):
         else:
             optimizer = SINDyOptimizer(self.optimizer, unbias=unbias)
             
-        print("\nBefore running STLSQG:\n") #+
+        
         
         steps = [
             ("features", self.feature_library),
@@ -414,6 +414,7 @@ class SINDy(BaseEstimator):
         ]
         x_dot = concat_sample_axis(x_dot)
         self.model = Pipeline(steps)
+        print("\nBefore running STLSQG:\n") #+
         action = "ignore" if quiet else "default"
         with warnings.catch_warnings():
             warnings.filterwarnings(action, category=ConvergenceWarning)
