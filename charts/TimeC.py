@@ -98,5 +98,32 @@ ax.grid(True)
 #plt.yscale("log")
 plt.show()
 
+# %%
+### sigmoid
+
+#Lambda
+L = 10
+
+
+fig, ax = plt.subplots(figsize=(10, 7), dpi=300)
+ax.plot(a, 1/(1+np.exp((L*(a-0.5)))), color='red', label='k = 1', linewidth=3)
+ax.plot(a, 1/(1+np.exp((L*a-1))), color='blue', label='k = 2', linewidth=3)
+ax.plot(a, 1/(1+np.exp((L*a))), color='green', label='k = 3', linewidth=3)
+ax.plot(a, 1/(1+np.exp((L*a))), color='orange', label='k = 4', linewidth=3)
+ax.plot(a, 1/(1+np.exp((L*a))), color='violet', label='k = 5', linewidth=3)
+ax.plot(a, 1/(1+np.exp((L*a))), color='cyan', label='k = 20', linewidth=3)
+# ax.plot(n, 3**n, color='orange', label='3^n', linewidth=3)
+# ax.plot(n, factorial((n)), color='violet', label='n!', linewidth=3)
+# ax.plot(n, n*np.log2(n), color='cyan', label='nlogn', linewidth=3)
+ax.legend(loc='upper right', shadow=True)
+# plt.savefig('accuracy.png')
+ax.set_title('Comparision')
+ax.set_xlabel('Connectivity')
+ax.set_ylabel('F(a)')
+ax.set_ylim(bottom=0)
+ax.set_xlim(left=0, right=1)
+ax.grid(True)
+#plt.yscale("log")
+plt.show()
 
 
