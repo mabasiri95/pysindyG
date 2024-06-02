@@ -424,8 +424,8 @@ class SINDy(BaseEstimator):
             print("\nBefore running STLSQG:\n") #+
             print('x Before running STLSQG type: \n', type(x)) # +
             print('x_dot Before running STLSQG type: \n', type(x_dot)) # +
-            print('x Before running STLSQG shape: \n', len(x), len(x[0])) # +
-            print('x_dot Before running STLSQG shape: \n', len(x_dot), len(x_dot[1])) # +
+            print('x Before running STLSQG shape: \n', np.asarray(x).shape) # +
+            print('x_dot Before running STLSQG shape: \n', np.asarray(x_dot).shape) # +
             self.model.fit(x, x_dot)
             print('x After running STLSQG type: \n', type(x)) # +
             print('x_dot After running STLSQG type: \n', type(x_dot)) # +
