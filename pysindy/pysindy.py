@@ -422,8 +422,10 @@ class SINDy(BaseEstimator):
             warnings.filterwarnings(action, category=LinAlgWarning)
             warnings.filterwarnings(action, category=UserWarning)
             print("\nBefore running STLSQG:\n") #+
-            print('x Before running STLSQG shape: \n', len(x[0])) # +
-            print('x_dot Before running STLSQG shape: \n', len(x_dot[0])) # +
+            print('x Before running STLSQG shape: \n', type(x)) # +
+            print('x_dot Before running STLSQG shape: \n', type(x_dot)) # +
+            print('x Before running STLSQG shape: \n', len(x[0]), len(x[1])) # +
+            print('x_dot Before running STLSQG shape: \n', len(x_dot[0]), len(x_dot[1])) # +
             self.model.fit(x, x_dot)
             print('x After running STLSQG : \n', x) # +
             print('x_dot After running STLSQG : \n', x_dot) # + 
