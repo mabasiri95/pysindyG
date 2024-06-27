@@ -126,4 +126,16 @@ ax.grid(True)
 #plt.yscale("log")
 plt.show()
 
+# %%
 
+
+#python3 main.py -m umap 1000,64,30 ../data/raw_tseries/synthetic_tseries/
+
+import numpy as np
+
+# Load the .npy file
+data = np.load('/Users/mohammadaminbasiri/Documents/GitHub/dFC_DimReduction/results/raw_tseries_20_rectangle_1_k5_pca_32_2024_6_17_23_31_35/clusters_pca.npy', allow_pickle=True)
+data1 = np.load('/Users/mohammadaminbasiri/Documents/GitHub/dFC_DimReduction/results/raw_tseries_20_rectangle_1_k5_pca_32_2024_6_17_23_31_35/states_pca.npy', allow_pickle=True)
+
+# Now you can use 'data' as a NumPy array
+print(data)
