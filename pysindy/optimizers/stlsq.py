@@ -9,6 +9,7 @@ from sklearn.linear_model import ridge_regression
 from sklearn.utils.validation import check_is_fitted
 
 from .base import BaseOptimizer
+import time
 
 
 class STLSQ(BaseOptimizer):
@@ -143,8 +144,11 @@ class STLSQ(BaseOptimizer):
         with warnings.catch_warnings():
             warnings.filterwarnings("ignore", category=LinAlgWarning)
             try:
+                start_time = time.time()
                 coef = ridge_regression(x, y, self.alpha, **kw)
-                
+                end_time = time.time()
+                total_time = end_time - start_time
+                print(f"Total execution time for 1 coef calculation: {total_time} seconds")
                 print('x ridge regression shape: \n', x.shape) # +
                 print('y ridge regression shape: \n', y.shape) # +
                 print('coef ridge regression shape: \n', coef.shape) # +

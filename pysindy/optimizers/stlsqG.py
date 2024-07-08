@@ -9,6 +9,7 @@ from sklearn.linear_model import ridge_regression
 from sklearn.utils.validation import check_is_fitted
 import numpy as np
 from scipy.optimize import minimize
+import time
 
 def custom_ridge_obj(w, x, y, alpha, F, beta):
     # Modify the standard Ridge objective here
@@ -192,7 +193,13 @@ class STLSQG(BaseOptimizer):
                 #coef = ridge_regression(x, y, self.alpha, **kw) #TODO: modify this 
                 #print("FA\n", FA) #+
                 
+
+                start_time = time.time()
                 coef = minimize(custom_ridge_obj2, x0=np.zeros(x.shape[1]), args=(x, y, self.alpha, FA, self.beta)).x # + # below zero for simple ridge, more than zero for cutom ridge
+                end_time = time.time()
+                total_time = end_time - start_time
+                print(f"Total execution time for 1 coef calculation: {total_time} seconds")
+
 
                 #print('Coef ridge regression: \n', coef)  # +
                 #print('F ridge regression: \n', FA)  # +
