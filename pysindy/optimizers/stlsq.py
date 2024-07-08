@@ -144,6 +144,10 @@ class STLSQ(BaseOptimizer):
             warnings.filterwarnings("ignore", category=LinAlgWarning)
             try:
                 coef = ridge_regression(x, y, self.alpha, **kw)
+                
+                print('x ridge regression shape: \n', x.shape) # +
+                print('y ridge regression shape: \n', y.shape) # +
+                print('coef ridge regression shape: \n', coef.shape) # +
             except LinAlgWarning:
                 # increase alpha until warning stops
                 self.alpha = 2 * self.alpha

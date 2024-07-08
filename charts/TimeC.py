@@ -132,12 +132,12 @@ plt.show()
 #python3 main.py -m umap 1000,64,30 ../data/raw_tseries/synthetic_tseries/
 
 import numpy as np
-
-# Load the .npy file
-clusters = np.load('/Users/mohammadaminbasiri/Documents/GitHub/dFC_DimReduction/results/raw_tseries_10_rectangle_2_k5_pca_32_2024_6_27_17_33_57/clusters_pca.npy', allow_pickle=True) #raw_tseries_10_rectangle_2_k5_pca_32_2024_6_27_17_33_57
-states = np.load('/Users/mohammadaminbasiri/Documents/GitHub/dFC_DimReduction/results/raw_tseries_10_rectangle_2_k5_pca_32_2024_6_27_17_33_57/states_pca.npy', allow_pickle=True) #raw_tseries_20_rectangle_1_k3_pca_32_2024_6_24_21_51_39
-dwell_time = np.load('/Users/mohammadaminbasiri/Documents/GitHub/dFC_DimReduction/results/raw_tseries_10_rectangle_2_k5_pca_32_2024_6_27_17_33_57/dwell_time_pca.npy', allow_pickle=True)
-fractional_occupancy = np.load('/Users/mohammadaminbasiri/Documents/GitHub/dFC_DimReduction/results/raw_tseries_10_rectangle_2_k5_pca_32_2024_6_27_17_33_57/fractional_occupancy_pca.npy', allow_pickle=True)
+#raw_tseries_10_rectangle_2_k5_pca_32_2024_6_27_17_33_57
+# Load the .npy file raw_tseries_20_rectangle_1_k3_pca_32_2024_7_3_8_38_54
+clusters = np.load('/Users/mohammadaminbasiri/Documents/GitHub/dFC_DimReduction/results/raw_tseries_20_rectangle_1_k3_pca_32_2024_7_3_8_38_54/clusters_pca.npy', allow_pickle=True) #raw_tseries_10_rectangle_2_k5_pca_32_2024_6_27_17_33_57
+states = np.load('/Users/mohammadaminbasiri/Documents/GitHub/dFC_DimReduction/results/raw_tseries_20_rectangle_1_k3_pca_32_2024_7_3_8_38_54/states_pca.npy', allow_pickle=True) #raw_tseries_20_rectangle_1_k3_pca_32_2024_6_24_21_51_39
+dwell_time = np.load('/Users/mohammadaminbasiri/Documents/GitHub/dFC_DimReduction/results/raw_tseries_20_rectangle_1_k3_pca_32_2024_7_3_8_38_54/dwell_time_pca.npy', allow_pickle=True)
+fractional_occupancy = np.load('/Users/mohammadaminbasiri/Documents/GitHub/dFC_DimReduction/results/raw_tseries_20_rectangle_1_k3_pca_32_2024_7_3_8_38_54/fractional_occupancy_pca.npy', allow_pickle=True)
 dfc = np.load('/Users/mohammadaminbasiri/Documents/GitHub/dFC_DimReduction/data/raw_tseries_20_rectangle_1/dfc.npy', allow_pickle=True)
 #clusters = np.load('/Users/mohammadaminbasiri/Documents/GitHub/dFC_DimReduction/clusters.npy', allow_pickle=True)
 dfc1 = np.load('/Users/mohammadaminbasiri/Documents/GitHub/dFC_DimReduction/data/raw_tseries_10_rectangle_2/dfc.npy', allow_pickle=True)
