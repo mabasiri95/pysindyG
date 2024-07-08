@@ -23,18 +23,24 @@ def custom_ridge_obj(w, x, y, alpha, F, beta):
 def custom_ridge_obj2(w, x, y, alpha, F, beta):
     # Modify the standard Ridge objective here
     # Example: Add a custom penalty term
-    loss = np.sum((y - x @ w)**2) #+ beta * np.sum(np.abs(w))  # Additional penalty
+    #TODO: delete second term and uncomment last part
+    loss = np.sum((y - x @ w)**2) + ((alpha + beta)/2.0) * np.sum((F*w)**2) #+ beta * np.sum(np.abs(w))  # Additional penalty
     
-    if np.max(F)==0:
-        loss += alpha * np.sum(w**2)
-    else:
-        if beta > 0:
-           loss += ((alpha + beta)/2.0) * np.sum((F*w)**2)
+    # if np.max(F)==0:
+    #     loss += alpha * np.sum(w**2)
+    # else:
+    #     if beta > 0:
+    #        loss += ((alpha + beta)/2.0) * np.sum((F*w)**2)
     
     
 
     return loss
 
+def custom_ridge_gradient(w, x, y, alpha, F, beta):
+    # Calculate the gradient of the loss function
+    residuals = y - x @ w
+    gradient = -2 * x.T @ residuals + 2 * ((alpha + beta)/2.0) * F**2 * w
+    return gradient
 
 
 from .base import BaseOptimizer
@@ -195,7 +201,9 @@ class STLSQG(BaseOptimizer):
                 
 
                 start_time = time.time()
-                coef = minimize(custom_ridge_obj2, x0=np.zeros(x.shape[1]), args=(x, y, self.alpha, FA, self.beta)).x # + # below zero for simple ridge, more than zero for cutom ridge
+                #coef = minimize(custom_ridge_obj2, x0=np.zeros(x.shape[1]), args=(x, y, self.alpha, FA, self.beta)).x # + # below zero for simple ridge, more than zero for cutom ridge
+                coef = minimize(custom_ridge_obj2, x0=np.zeros(x.shape[1]), args=(x, y, self.alpha, FA, self.beta),
+                  method='L-BFGS-B', jac=custom_ridge_gradient).x
                 end_time = time.time()
                 total_time = end_time - start_time
                 print(f"Total execution time for 1 coef calculation: {total_time} seconds")

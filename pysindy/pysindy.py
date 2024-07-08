@@ -421,11 +421,11 @@ class SINDy(BaseEstimator):
             warnings.filterwarnings(action, category=ConvergenceWarning)
             warnings.filterwarnings(action, category=LinAlgWarning)
             warnings.filterwarnings(action, category=UserWarning)
-            print("\nBefore running STLSQG:\n") #+
-            print('x Before running STLSQG type: \n', type(x)) # +
-            print('x_dot Before running STLSQG type: \n', type(x_dot)) # +
-            print('x Before running STLSQG shape: \n', np.asarray(x).shape) # +
-            print('x_dot Before running STLSQG shape: \n', np.asarray(x_dot).shape) # +
+            #print("\nBefore running STLSQG:\n") #+
+            #print('x Before running STLSQG type: \n', type(x)) # +
+            #print('x_dot Before running STLSQG type: \n', type(x_dot)) # +
+            #print('x Before running STLSQG shape: \n', np.asarray(x).shape) # +
+            #print('x_dot Before running STLSQG shape: \n', np.asarray(x_dot).shape) # +
             self.model.fit(x, x_dot)
             print('x After running STLSQG type: \n', type(x)) # +
             print('x_dot After running STLSQG type: \n', type(x_dot)) # +
@@ -433,7 +433,7 @@ class SINDy(BaseEstimator):
             print('x_dot After running STLSQG shape: \n', np.asarray(x_dot).shape) # +  len(x_dot), len(x_dot[1])
             #print('x After running STLSQG : \n', x) # +
             #print('x_dot After running STLSQG : \n', x_dot) # + 
-            print("\nAfter running STLSQG:\n",self.feature_library.get_feature_names()) #+
+            #print("\nAfter running STLSQG:\n",self.feature_library.get_feature_names()) #+
 
 
         
