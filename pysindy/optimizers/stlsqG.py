@@ -196,8 +196,8 @@ class STLSQG(BaseOptimizer):
 
                 #print('Coef ridge regression: \n', coef)  # +
                 #print('F ridge regression: \n', FA)  # +
-                print('x ridge regression shape: \n', x.shape) # +
-                print('y ridge regression shape: \n', y.shape) # +
+                #print('x ridge regression shape: \n', x.shape) # +
+                #print('y ridge regression shape: \n', y.shape) # +
             except LinAlgWarning:
                 # increase alpha until warning stops
                 self.alpha = 2 * self.alpha
@@ -275,7 +275,7 @@ class STLSQG(BaseOptimizer):
                     n_features, ind[i], coef_i, self.threshold
                 )
                 
-                print('AFTER SPARSE Coef ridge regression: \n', coef_i)  # +
+                #print('AFTER SPARSE Coef ridge regression: \n', coef_i)  # +
                 coef[i] = coef_i # check this
                 ind[i] = ind_i
 
@@ -310,9 +310,9 @@ class STLSQG(BaseOptimizer):
                 
         self.coef_ = coef
         self.ind_ = ind # this is importent to know which terms are contributing
-        print('Final Coef ridge regression: \n', coef)  # +
-        print('Final Coef ridge regression Shape: \n', coef.shape)  # + # (6, 57) 6 sate variables and 57 terms
-        print('Final ind ridge regression: \n', ind)  # +
+        #print('Final Coef ridge regression: \n', coef)  # +
+        #print('Final Coef ridge regression Shape: \n', coef.shape)  # + # (6, 57) 6 sate variables and 57 terms
+        #print('Final ind ridge regression: \n', ind)  # +
 
     @property
     def complexity(self):
