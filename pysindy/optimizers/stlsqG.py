@@ -45,7 +45,7 @@ def custom_ridge_regression(x, y, alpha, F, beta):
     # Rescale X by 1/F
     x_scaled = x / F
     # Adjust alpha by F^2
-    alpha_scaled = ((alpha + beta)/2.0) * (F ** 2)
+    ##alpha_scaled = ((alpha + beta)/2.0) * (F ** 2)
     # Use the ridge_regression function
     
     
@@ -55,7 +55,7 @@ def custom_ridge_regression(x, y, alpha, F, beta):
     print('F ridge regression shape: ', F.shape) # +
     print('x_scaled ridge regression shape: ', x_scaled.shape) # +
     print('y ridge regression shape: ', y.shape) # +
-    print('alpha_scaled ridge regression shape: ', alpha_scaled.shape) # +
+    print('alpha_scaled ridge regression shape: ', alpha.shape) # +
     
     #TODO: ADD THE FOLLOWING and remove the rest
     # TODO: ADD THE kw like the original
@@ -70,7 +70,7 @@ def custom_ridge_regression(x, y, alpha, F, beta):
     #     coef /= F
     # else: # simple ridge ||y - Xw||^2  +  a||w||^2
     #     coef = ridge_regression(x, y, alpha)
-    coef = ridge_regression(x_scaled, y, alpha_scaled)
+    coef = ridge_regression(x_scaled, y, alpha)
     # Reverse the scaling for the coefficients
     coef /= F
     return coef
