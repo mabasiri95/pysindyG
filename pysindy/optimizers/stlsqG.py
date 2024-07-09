@@ -49,13 +49,13 @@ def custom_ridge_regression(x, y, alpha, F, beta):
     # Use the ridge_regression function
     
     
-    #TODO:remove these additional prints
-    print('x ridge regression shape: ', x.shape) # +
-    print('y ridge regression shape: ', y.shape) # +
-    print('F ridge regression shape: ', F.shape) # +
-    print('x_scaled ridge regression shape: ', x_scaled.shape) # +
-    print('y ridge regression shape: ', y.shape) # +
-    print('alpha_scaled ridge regression shape: ', alpha.shape) # +
+    # #TODO:remove these additional prints
+    # print('x ridge regression shape: ', x.shape) # +
+    # print('y ridge regression shape: ', y.shape) # +
+    # print('F ridge regression shape: ', F.shape) # +
+    # print('x_scaled ridge regression shape: ', x_scaled.shape) # +
+    # print('y ridge regression shape: ', y.shape) # +
+    # print('alpha_scaled ridge regression shape: ', alpha.shape) # +
     
     #TODO: ADD THE FOLLOWING and remove the rest
     # TODO: ADD THE kw like the original
