@@ -41,6 +41,31 @@ def custom_ridge_gradient(w, x, y, alpha, F, beta):
     gradient = -2 * x.T @ residuals + 2 * ((alpha + beta)/2.0) * F**2 * w
     return gradient
 
+def custom_ridge_regression(x, y, alpha, F, beta):
+    # Rescale X by 1/F
+    x_scaled = x / F
+    # Adjust alpha by F^2
+    alpha_scaled = ((alpha + beta)/2.0) * (F ** 2)
+    # Use the ridge_regression function
+    
+    #TODO: ADD THE FOLLOWING and remove the rest
+    # TODO: ADD THE kw like the original
+    # if beta > 0: #||y - Xw||^2  +  a||F*w||^2
+    #     # Rescale X by 1/F
+    #     x_scaled = x / F
+    #     # Adjust alpha by F^2
+    #     alpha_scaled = ((alpha + beta)/2.0) * (F ** 2)
+    #     # Use the ridge_regression function
+    #     coef = ridge_regression(x_scaled, y, alpha_scaled)
+    #     # Reverse the scaling for the coefficients
+    #     coef /= F
+    # else: # simple ridge ||y - Xw||^2  +  a||w||^2
+    #     coef = ridge_regression(x, y, alpha)
+    coef = ridge_regression(x_scaled, y, alpha_scaled)
+    # Reverse the scaling for the coefficients
+    coef /= F
+    return coef
+
 
 from .base import BaseOptimizer
 
@@ -202,9 +227,10 @@ class STLSQG(BaseOptimizer):
                 start_time = time.time()
                 #simple method
                 #coef = minimize(custom_ridge_obj2, x0=np.zeros(x.shape[1]), args=(x, y, self.alpha, FA, self.beta)).x # + # below zero for simple ridge, more than zero for cutom ridge
-                #time modified method
-                coef = minimize(custom_ridge_obj2, x0=np.zeros(x.shape[1]), args=(x, y, self.alpha, FA, self.beta),
-                  method='L-BFGS-B', jac=custom_ridge_gradient)
+                #time modified method that we calculate gradient manually
+                #coef = minimize(custom_ridge_obj2, x0=np.zeros(x.shape[1]), args=(x, y, self.alpha, FA, self.beta),
+                #  method='L-BFGS-B', jac=custom_ridge_gradient).x # +
+                coef = custom_ridge_regression(x, y, self.alpha, FA, self.beta) # beta <0 simple ridge.
                 end_time = time.time()
                 total_time = end_time - start_time
                 print(f"Total execution time for 1 coef calculation: {total_time} seconds")
