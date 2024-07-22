@@ -235,11 +235,11 @@ class STLSQG(BaseOptimizer):
 
                 start_time = time.time()
                 #simple method
-                #coef = minimize(custom_ridge_obj2, x0=np.zeros(x.shape[1]), args=(x, y, self.alpha, FA, self.beta)).x # + # below zero for simple ridge, more than zero for cutom ridge
+                coef = minimize(custom_ridge_obj2, x0=np.zeros(x.shape[1]), args=(x, y, self.alpha, FA, self.beta)).x # + # below zero for simple ridge, more than zero for cutom ridge
                 #time modified method that we calculate gradient manually
                 #coef = minimize(custom_ridge_obj2, x0=np.zeros(x.shape[1]), args=(x, y, self.alpha, FA, self.beta),
                 #  method='L-BFGS-B', jac=custom_ridge_gradient).x # +
-                coef = custom_ridge_regression(x, y, self.alpha, FA, self.beta) # beta <0 simple ridge.
+                #coef = custom_ridge_regression(x, y, self.alpha, FA, self.beta) # beta <0 simple ridge.
                 end_time = time.time()
                 total_time = end_time - start_time
                 print(f"Total execution time for 1 coef calculation: {total_time} seconds")
