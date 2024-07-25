@@ -243,14 +243,14 @@ class STLSQG(BaseOptimizer):
                 coef = custom_ridge_regression(x, y, self.alpha, FA, self.beta) # beta <0 simple ridge.
                 end_time = time.time()
                 total_time = end_time - start_time
-                print(f"Total execution time for 1 coef calculation: {total_time} seconds")
+                #print(f"Total execution time for 1 coef calculation: {total_time} seconds")
 
 
                 #print('Coef ridge regression: \n', coef)  # +
                 #print('F ridge regression: \n', FA)  # +
-                print('x ridge regression shape: ', x.shape) # +
-                print('y ridge regression shape: ', y.shape) # +
-                print('coef ridge regression shape: ', coef.shape) # +
+                #print('x ridge regression shape: ', x.shape) # +
+                #print('y ridge regression shape: ', y.shape) # +
+                #print('coef ridge regression shape: ', coef.shape) # +
             except LinAlgWarning:
                 # increase alpha until warning stops
                 self.alpha = 2 * self.alpha
